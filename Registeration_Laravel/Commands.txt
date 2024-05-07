@@ -1,0 +1,11 @@
+//1- Make Migrations
+php artisan make:migration alter_Registeration_table --create=registeration
+
+//2- Migrate
+php artisan migrate
+
+3- create model controller
+php artisan make:controller RegisteraionController --resource --model=registeration
+
+//run server 
+php artisan serve

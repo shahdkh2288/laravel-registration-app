@@ -13,10 +13,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/', function () {
+use Illuminate\Support\Facades\App;
+
+Route::get('/{locale?}', function ($locale = 'en') {
+    if (!in_array($locale, ['en', 'ar', 'ru', 'de'])) {
+        abort(400);
+    }
+
+    App::setLocale($locale);
+
     return view('welcome');
-});
+})->name('locale.switch');
 
 Route::resource('registerations', RegisterationController::class);
 

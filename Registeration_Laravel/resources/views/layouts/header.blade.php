@@ -1,5 +1,4 @@
 {{-- header.blade.php --}}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('../css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('../css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+    <title>@yield("title")</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">

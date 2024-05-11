@@ -6,7 +6,7 @@
         <i class="fa fa-google" aria-hidden="true"></i>
         <i class="fa fa-github" aria-hidden="true"></i>
     </div>
-    <p>Copy Right 2024 © By <a href="#">FCAI</a> All Rights Reserved</p>
+    <p> {{ __('locale.copy_right') }} </p>
 </div>
 <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">

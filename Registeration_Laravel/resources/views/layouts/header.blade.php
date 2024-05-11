@@ -21,16 +21,16 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ __('locale.home') }}</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ __('locale.about') }}</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="#">Services</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ __('locale.services') }}</a>
                     </li>
                     <li class="nav-item me-4">
-                        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="#">{{ __('locale.contact') }}</a>
                     </li>
                 </ul>
             </div>

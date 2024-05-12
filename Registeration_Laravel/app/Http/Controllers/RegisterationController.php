@@ -33,30 +33,33 @@ class RegisterationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-public function store(Request $request){
-    // Validate the incoming request data
-
-
-    // Hash the password
-    $hashedPassword = Hash::make($request['password']);
-
-    // Create a new Registeration model instance with the validated data
-    $registeration = new Registeration;
-    $registeration->name = $request['full_name'];
-    $registeration->username = $request['username'];
-    $registeration->password = $hashedPassword; // Store the hashed password
-    $registeration->email = $request['email'];
-    $registeration->phone = $request['phone'];
-    $registeration->address = $request['address'];
-    $registeration->birthday = $request['birthdate'];
-    $registeration->image = $request->file('user_image')->store('images'); // Store the uploaded image
-
-    // Save the Registeration model instance to the database
-    $registeration->save();
-    // return redirect()->route('index')->with('success', 'Registration successful.');
-
-    // Redirect the user to a success page or return a response
-}
+  public function store(Request $request){
+        // Get the original filename of the uploaded image
+        $file_name = request()->user_image->getClientOriginalName();
+    
+        // Move the uploaded image to the public/images directory with the original filename
+        request()->user_image->move(public_path('images'), $file_name);
+    
+        // Hash the password
+        $hashedPassword = Hash::make($request->password);
+    
+        // Create a new Registration model instance with the validated data
+        $registration = new Registeration;
+        $registration->name = $request->full_name;
+        $registration->username = $request->username;
+        $registration->password = $hashedPassword; // Store the hashed password
+        $registration->email = $request->email;
+        $registration->phone = $request->phone;
+        $registration->address = $request->address;
+        $registration->birthday = $request->birthdate;
+        $registration->image = $file_name; // Store the original filename of the uploaded image
+    
+        // Save the Registration model instance to the database
+        $registration->save();
+    
+        // Redirect the user to a success page or return a response
+        // return redirect()->route('index')->with('success', 'Registration successful.');
+    }
 
     /**
      * Display the specified resource.

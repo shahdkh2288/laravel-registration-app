@@ -19,16 +19,16 @@ function ValidateName() {
 
 function ValidateUserName() { 
     let regUserName = /^[a-zA-Z0-9_]+$/; // Username contains only alphanumeric characters and underscores.
-    let userName = document.getElementById("username_id").value;
-    let userNameInput = document.getElementById('username_id');
+    let userName = document.getElementById("uname_id").value;
+    let userNameInput = document.getElementById('uname_id');
 
     if (!regUserName.test(userName)) {
-        document.getElementById("usernameerror").innerHTML = "Please Enter a Valid Username <i class='fa-solid fa-circle-xmark'></i>";
+        document.getElementById("usererror").innerHTML = "Please Enter a Valid Username <i class='fa-solid fa-circle-xmark'></i>";
         userNameInput.classList.remove("is-valid");
         userNameInput.classList.add("is-invalid");
         return false;
     } else {
-        document.getElementById("usernameerror").innerHTML = "";
+        document.getElementById("usererror").innerHTML = "";
         userNameInput.classList.remove("is-invalid");
         userNameInput.classList.add("is-valid");
         return true;
@@ -152,9 +152,31 @@ function ValidateAddress() {
     }
 }
 
+function ValidateDate() {
+    // Regular expression for date format (YYYY-MM-DD)
+    const DateRegExp = /^\d{4}-\d{2}-\d{2}$/;
+    let DateValue = document.getElementById('bd_id').value;
+
+    if (!DateRegExp.test(DateValue)) {
+        document.getElementById("DateError").innerHTML = "Please Enter a Valid Date";
+        document.getElementById('bd_id').classList.remove("is-valid");
+        document.getElementById('bd_id').classList.add("is-invalid");
+        return false;
+    } else {
+        document.getElementById("DateError").innerHTML = "";
+        document.getElementById('bd_id').classList.remove("is-invalid");
+        document.getElementById('bd_id').classList.add("is-valid");
+        return true;
+    }
+}
+
+
+
+
+
 
 function validateForm(){
-    if(ValidateName()&& ValidateEmail() && ValidatePassword() && ConfirmPassword() && ValidateUserName() && ValidatePhone() &&ValidateAddress()){
+    if(ValidateName()&& ValidateEmail() && ValidatePassword() && ConfirmPassword() && ValidateUserName() && ValidatePhone() &&ValidateAddress() && ValidateDate()){
         return true ;
     }
     else{

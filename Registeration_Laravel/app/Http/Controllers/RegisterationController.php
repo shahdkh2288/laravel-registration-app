@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Registeration;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\testmail;
+use Illuminate\Support\Facades\Mail;
+
 class RegisterationController extends Controller
 {
     /**
@@ -36,13 +39,13 @@ class RegisterationController extends Controller
   public function store(Request $request){
         // Get the original filename of the uploaded image
         $file_name = request()->user_image->getClientOriginalName();
-    
+
         // Move the uploaded image to the public/images directory with the original filename
         request()->user_image->move(public_path('images'), $file_name);
-    
+
         // Hash the password
         $hashedPassword = Hash::make($request->password);
-    
+
         // Create a new Registration model instance with the validated data
         $registration = new Registeration;
         $registration->name = $request->full_name;
@@ -53,10 +56,12 @@ class RegisterationController extends Controller
         $registration->address = $request->address;
         $registration->birthday = $request->birthdate;
         $registration->image = $file_name; // Store the original filename of the uploaded image
-    
+
         // Save the Registration model instance to the database
         $registration->save();
-    
+
+        Mail::to('amalmohamedm7.7@gmail.com')->send(new TestMail($request->username));
+
         // Redirect the user to a success page or return a response
         // return redirect()->route('index')->with('success', 'Registration successful.');
     }

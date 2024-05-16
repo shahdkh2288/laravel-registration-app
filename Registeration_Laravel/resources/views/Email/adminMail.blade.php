@@ -7,7 +7,7 @@
 <div>
     <h1>New User Registration</h1>
 
-    <H1>Hello  {{$name}}</H1>
+    <H1>New Registered User:  {{$name}}</H1>
 
 </div>
 </body>
